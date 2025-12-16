@@ -1,0 +1,31 @@
+.placeholder-page {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.placeholder-page h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.placeholder-page p {
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+}
+
+.placeholder-page .back-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.placeholder-page .back-link:hover {
+  background-color: #2980b9;
+}
