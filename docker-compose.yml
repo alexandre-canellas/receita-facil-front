@@ -1,0 +1,56 @@
+version: '3.8'
+
+# Docker Compose para ReceitaFacil
+# Executar na raiz do projeto com os dois repositorios como pastas irmas:
+#   receita-facil/
+#   ├── receita-facil-front/   (este repositorio)
+#   └── receita-facil-api/     (repositorio da API)
+
+services:
+  # API Backend - FastAPI
+  api:
+    build:
+      context: ../receita-facil-api
+      dockerfile: Dockerfile
+    container_name: receitafacil-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./instance/database.db
+      - DEBUG=false
+    volumes:
+      - api-data:/app/instance
+    networks:
+      - receitafacil-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # Frontend - React/Vite com Nginx
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:8000
+    container_name: receitafacil-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    networks:
+      - receitafacil-network
+    restart: unless-stopped
+
+networks:
+  receitafacil-network:
+    driver: bridge
+
+volumes:
+  api-data:
+    name: receitafacil-api-data

@@ -94,6 +94,50 @@ Visualize o build de producao:
 npm run preview
 ```
 
+## Executando com Docker
+
+### Pre-requisitos
+- Docker instalado
+- Docker Compose instalado
+- Repositorio da API clonado como pasta irma
+
+### Estrutura esperada
+```
+projeto/
+├── receita-facil-front/   (este repositorio)
+│   └── docker-compose.yml
+└── receita-facil-api/     (repositorio da API)
+```
+
+### Executando
+```bash
+# Na pasta do frontend
+cd receita-facil-front
+
+# Subir os containers
+docker compose up -d
+
+# Ou com build
+docker compose up -d --build
+```
+
+### URLs
+- **Frontend**: http://localhost:3000
+- **API**: http://localhost:8000
+- **Swagger**: http://localhost:8000/docs
+
+### Comandos uteis
+```bash
+# Ver logs
+docker compose logs -f
+
+# Parar containers
+docker compose down
+
+# Parar e remover volumes
+docker compose down -v
+```
+
 ## Paginas
 
 | Rota | Pagina | Descricao |
@@ -133,6 +177,9 @@ receita-facil-front/
 │   ├── App.css
 │   ├── main.jsx                # Ponto de entrada
 │   └── index.css               # Estilos globais
+├── docker-compose.yml          # Orquestracao dos containers
+├── Dockerfile                  # Build da imagem do frontend
+├── nginx.conf                  # Configuracao do Nginx
 ├── index.html
 ├── package.json
 ├── vite.config.js
