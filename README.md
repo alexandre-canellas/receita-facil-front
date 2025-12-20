@@ -65,7 +65,7 @@ VITE_API_URL=http://localhost:8000
 
 ## Executando a Aplicação
 
-### Pre-requisito
+### Pré-requisito
 Certifique-se de que a API backend esteja rodando:
 ```bash
 cd ../receita-facil-api
@@ -80,7 +80,7 @@ Inicie o servidor de desenvolvimento com hot reload:
 npm run dev
 ```
 
-A aplicacao estara disponivel em `http://localhost:5173`.
+A aplicação estará disponível em `http://localhost:5173`.
 
 ### Build de Produção
 
