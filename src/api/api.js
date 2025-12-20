@@ -182,7 +182,7 @@ export async function addRecipeToShoppingList(recipeId, userId) {
  * Limpa toda a lista de compras
  */
 export async function clearShoppingList(userId) {
-  return fetchApi(`/shopping-list/clear?user_id=${userId}`, {
+  return fetchApi(`/shopping-list/clear/?user_id=${userId}`, {
     method: 'DELETE',
   });
 }
