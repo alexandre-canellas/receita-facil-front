@@ -114,6 +114,22 @@ export async function removeFavorite(favoriteId) {
   });
 }
 
+/**
+ * Verifica se uma receita esta nos favoritos
+ */
+export async function checkFavorite(recipeId, userId) {
+  return fetchApi(`/favorites/check/${recipeId}?user_id=${userId}`);
+}
+
+/**
+ * Remove receita dos favoritos pelo ID da receita
+ */
+export async function removeFavoriteByRecipe(recipeId, userId) {
+  return fetchApi(`/favorites/recipe/${recipeId}?user_id=${userId}`, {
+    method: 'DELETE',
+  });
+}
+
 // ==================== LISTA DE COMPRAS ====================
 // (sera implementado no Marco 3)
 
