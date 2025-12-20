@@ -10,7 +10,7 @@ import {
 } from '../api/api';
 import './Home.css';
 
-// Home page with search and recipe listing
+// Página inicial
 function Home() {
   const [recipes, setRecipes] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -20,7 +20,7 @@ function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState(null);
 
-  // Load categories and recipe of the day on component mount
+  // Carregando receita do dia e demais receitas
   useEffect(() => {
     async function loadInitialData() {
       try {
@@ -35,7 +35,7 @@ function Home() {
         setCategories(categoriesData.categories || []);
         setRandomRecipe(randomData.meal || null);
 
-        // Load recipes from the first category
+        // Carrega linearmente por categoria
         if (categoriesData.categories?.length > 0) {
           const firstCategory = categoriesData.categories[0].strCategory;
           const recipesData = await getRecipesByCategory(firstCategory);
@@ -53,7 +53,7 @@ function Home() {
     loadInitialData();
   }, []);
 
-  // Search recipes by name
+  // Procurar receitas por nome
   const handleSearch = async (term) => {
     try {
       setLoading(true);
@@ -75,7 +75,7 @@ function Home() {
     }
   };
 
-  // Filter recipes by category
+  // Filtrar por categoria
   const handleCategorySelect = async (category) => {
     try {
       setLoading(true);
@@ -97,13 +97,13 @@ function Home() {
 
   return (
     <div className="home">
-      {/* Search section */}
+      {/* Busca */}
       <section className="home-search">
         <h1>Find your next recipe</h1>
         <SearchBar onSearch={handleSearch} />
       </section>
 
-      {/* Recipe of the day */}
+      {/* Receita do Dia */}
       {randomRecipe && !searchTerm && (
         <section className="home-featured">
           <h2>Recipe of the Day</h2>
@@ -113,7 +113,7 @@ function Home() {
         </section>
       )}
 
-      {/* Categories */}
+      {/* Categorias */}
       {!searchTerm && categories.length > 0 && (
         <section className="home-categories">
           <h2>Categories</h2>
@@ -125,7 +125,7 @@ function Home() {
         </section>
       )}
 
-      {/* Results */}
+      {/* Resultados */}
       <section className="home-results">
         {searchTerm && (
           <h2>Results for "{searchTerm}"</h2>

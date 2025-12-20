@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './SearchBar.css';
 
-// Search bar component
+// Filtro de busca
 function SearchBar({ onSearch, placeholder = 'Search recipes...' }) {
   const [searchTerm, setSearchTerm] = useState('');
 

@@ -16,7 +16,7 @@ function ShoppingPage() {
   const [newItem, setNewItem] = useState({ ingrediente: '', quantidade: '' });
   const [userId, setUserId] = useState(null);
 
-  // Get or create user ID from localStorage
+  // Utiliza o userId local -> cria caso não exista
   useEffect(() => {
     const storedUserId = localStorage.getItem('userId');
     if (storedUserId) {
@@ -24,7 +24,7 @@ function ShoppingPage() {
     }
   }, []);
 
-  // Load shopping list when userId is available
+  // Carrega a lista de compras quando houver userId
   useEffect(() => {
     if (userId) {
       loadShoppingList();
@@ -117,7 +117,7 @@ function ShoppingPage() {
     alert('List copied to clipboard!');
   }
 
-  // Group items by recipe origin
+  // Agrupando receitas por país de origem
   const groupedItems = items.reduce((acc, item) => {
     const key = item.receita_origem || 'Manual';
     if (!acc[key]) acc[key] = [];
@@ -155,7 +155,7 @@ function ShoppingPage() {
 
       {error && <div className="error-message">{error}</div>}
 
-      {/* Add item form */}
+      {/* Adicionar items da lista */}
       <form className="add-item-form" onSubmit={handleAddItem}>
         <input
           type="text"
@@ -174,7 +174,7 @@ function ShoppingPage() {
         <button type="submit" className="btn-add">Add</button>
       </form>
 
-      {/* Actions */}
+      {/* Ações */}
       {items.length > 0 && (
         <div className="shopping-actions">
           <button onClick={handleCopyList} className="btn-action">
@@ -195,7 +195,7 @@ function ShoppingPage() {
         </div>
       )}
 
-      {/* Items grouped by recipe */}
+      {/* Items agrupados por receita */}
       {!loading && Object.entries(groupedItems).map(([recipeName, groupItems]) => (
         <div key={recipeName} className="item-group">
           <h3 className="group-title">{recipeName}</h3>

@@ -1,6 +1,6 @@
 import './CategoryList.css';
 
-// Category list component
+// Filtro de categorias
 function CategoryList({ categories, selectedCategory, onSelectCategory }) {
   return (
     <div className="category-list">

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './RecipeCard.css';
 
-// Recipe card component
+// Card de Receitas
 function RecipeCard({ recipe }) {
   const {
     idMeal,

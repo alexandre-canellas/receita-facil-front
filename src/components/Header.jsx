@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-// Header component with navigation
+// Navegação superior de página
 function Header() {
   return (
     <header className="header">

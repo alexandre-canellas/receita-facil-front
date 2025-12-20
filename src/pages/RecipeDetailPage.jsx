@@ -31,7 +31,7 @@ function RecipeDetailPage() {
         setRecipe(data.meal);
         setIngredients(data.ingredients || []);
 
-        // Check if recipe is in favorites
+        // Check de favoritos
         const userId = localStorage.getItem('userId');
         if (userId) {
           try {

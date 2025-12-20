@@ -53,7 +53,7 @@ function FavoritesPage() {
     }
   }
 
-  // Convert favorite to recipe format for RecipeCard
+  // Favorita a receita
   function favoriteToRecipe(favorite) {
     return {
       idMeal: favorite.receita_id_externa,

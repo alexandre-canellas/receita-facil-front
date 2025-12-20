@@ -3,7 +3,7 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 /**
- * Funcao auxiliar para fazer requisicoes HTTP
+ * Função auxiliar para fazer requisições HTTP
  */
 async function fetchApi(endpoint, options = {}) {
   const url = `${API_BASE_URL}${endpoint}`;
@@ -59,17 +59,16 @@ export async function getRecipeById(id) {
 }
 
 /**
- * Retorna uma receita aleatoria
+ * Retorna uma receita aleatória
  */
 export async function getRandomRecipe() {
   return fetchApi('/recipes/random');
 }
 
-// ==================== USUARIOS ====================
-// (sera implementado no Marco 2)
+// ==================== USUÁRIOS ====================
 
 /**
- * Cria um novo usuario
+ * Cria um novo usuário
  */
 export async function createUser(userData) {
   return fetchApi('/users/', {
@@ -79,17 +78,16 @@ export async function createUser(userData) {
 }
 
 /**
- * Busca usuario pelo ID
+ * Busca usuário pelo ID
  */
 export async function getUserById(id) {
   return fetchApi(`/users/${id}`);
 }
 
 // ==================== FAVORITOS ====================
-// (sera implementado no Marco 2)
 
 /**
- * Lista favoritos do usuario
+ * Lista favoritos do usuário
  */
 export async function getFavorites(userId) {
   return fetchApi(`/favorites?user_id=${userId}`);
@@ -131,7 +129,6 @@ export async function removeFavoriteByRecipe(recipeId, userId) {
 }
 
 // ==================== LISTA DE COMPRAS ====================
-// (sera implementado no Marco 3)
 
 /**
  * Lista itens da lista de compras

@@ -6,7 +6,7 @@ import FavoritesPage from './pages/FavoritesPage';
 import ShoppingPage from './pages/ShoppingPage';
 import './App.css';
 
-// Componente principal da aplicacao
+// Componente principal da aplicação
 function App() {
   return (
     <BrowserRouter>

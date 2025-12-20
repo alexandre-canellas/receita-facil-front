@@ -1,6 +1,6 @@
 # ReceitaFacil Frontend
 
-Aplicacao web moderna para busca e descoberta de receitas, construida com React e Vite.
+Aplicação web moderna para busca e descoberta de receitas, construida com React e Vite.
 Permite buscar receitas, salvar favoritos e gerenciar lista de compras.
 
 ## Funcionalidades
@@ -8,9 +8,9 @@ Permite buscar receitas, salvar favoritos e gerenciar lista de compras.
 ### Busca de Receitas
 - Buscar receitas por nome
 - Navegar por categorias (Beef, Chicken, Dessert, etc.)
-- Visualizar receita do dia (aleatoria)
-- Ver detalhes completos com ingredientes e instrucoes
-- Videos do YouTube integrados
+- Visualizar receita do dia (aleatória)
+- Ver detalhes completos com ingredientes e instruções
+- Vídeos do YouTube integrados
 
 ### Favoritos
 - Adicionar/remover receitas dos favoritos
@@ -28,8 +28,8 @@ Permite buscar receitas, salvar favoritos e gerenciar lista de compras.
 
 ### Interface
 - Design responsivo (mobile-friendly)
-- Feedback visual de acoes (loading, sucesso, erro)
-- Navegacao intuitiva
+- Feedback visual de ações (loading, sucesso, erro)
+- Navegação intuitiva
 
 ## Tecnologias
 
@@ -45,15 +45,15 @@ Permite buscar receitas, salvar favoritos e gerenciar lista de compras.
 - npm ou yarn
 - API ReceitaFacil rodando (backend)
 
-## Instalacao
+## Instalação
 
-1. Clone o repositorio:
+1. Clone o repositório:
 ```bash
 git clone https://github.com/alexandre-canellas/receita-facil-front.git
 cd receita-facil-front
 ```
 
-2. Instale as dependencias:
+2. Instale as dependências:
 ```bash
 npm install
 ```
@@ -63,7 +63,7 @@ npm install
 VITE_API_URL=http://localhost:8000
 ```
 
-## Executando a Aplicacao
+## Executando a Aplicação
 
 ### Pre-requisito
 Certifique-se de que a API backend esteja rodando:
@@ -82,14 +82,14 @@ npm run dev
 
 A aplicacao estara disponivel em `http://localhost:5173`.
 
-### Build de Producao
+### Build de Produção
 
-Crie o build de producao:
+Crie o build de produção:
 ```bash
 npm run build
 ```
 
-Visualize o build de producao:
+Visualize o build de produção:
 ```bash
 npm run preview
 ```
@@ -99,14 +99,14 @@ npm run preview
 ### Pre-requisitos
 - Docker instalado
 - Docker Compose instalado
-- Repositorio da API clonado como pasta irma
+- Repositorio da API clonado como pasta irmã
 
 ### Estrutura esperada
 ```
 projeto/
-├── receita-facil-front/   (este repositorio)
+├── receita-facil-front/   (este repositório)
 │   └── docker-compose.yml
-└── receita-facil-api/     (repositorio da API)
+└── receita-facil-api/     (repositório da API)
 ```
 
 ### Executando
@@ -114,11 +114,11 @@ projeto/
 # Na pasta do frontend
 cd receita-facil-front
 
-# Subir os containers
-docker compose up -d
+# Subir os containers (com build)
+docker-compose up -d --build
 
-# Ou com build
-docker compose up -d --build
+# Ou sem rebuild
+docker-compose up -d
 ```
 
 ### URLs
@@ -126,24 +126,30 @@ docker compose up -d --build
 - **API**: http://localhost:8000
 - **Swagger**: http://localhost:8000/docs
 
-### Comandos uteis
+### Comandos úteis
 ```bash
-# Ver logs
-docker compose logs -f
+# Ver containers rodando
+docker-compose ps
+
+# Ver logs em tempo real
+docker-compose logs -f
 
 # Parar containers
-docker compose down
+docker-compose down
 
-# Parar e remover volumes
-docker compose down -v
+# Parar e remover volumes (limpa banco de dados)
+docker-compose down -v
+
+# Rebuild apos alterações no código
+docker-compose up -d --build
 ```
 
 ## Paginas
 
-| Rota | Pagina | Descricao |
+| Rota | Página | Descrição |
 |------|--------|-----------|
 | `/` | Home | Busca, categorias e receita do dia |
-| `/recipe/:id` | Detalhes | Informacoes completas da receita |
+| `/recipe/:id` | Detalhes | Informações completas da receita |
 | `/favorites` | Favoritos | Lista de receitas favoritas |
 | `/shopping-list` | Lista de Compras | Gerenciamento de ingredientes |
 
@@ -154,57 +160,57 @@ receita-facil-front/
 ├── public/
 ├── src/
 │   ├── api/
-│   │   └── api.js              # Servico de comunicacao com a API
+│   │   └── api.js                          # Serviço de comunicação com a API
 │   ├── components/
-│   │   ├── Header.jsx          # Cabecalho com navegacao
+│   │   ├── Header.jsx                      # Cabeçalho com navegação
 │   │   ├── Header.css
-│   │   ├── SearchBar.jsx       # Campo de busca
+│   │   ├── SearchBar.jsx                   # Campo de busca
 │   │   ├── SearchBar.css
-│   │   ├── RecipeCard.jsx      # Card de receita
+│   │   ├── RecipeCard.jsx                  # Card de receita
 │   │   ├── RecipeCard.css
-│   │   ├── CategoryList.jsx    # Lista de categorias
+│   │   ├── CategoryList.jsx                # Lista de categorias
 │   │   └── CategoryList.css
 │   ├── pages/
-│   │   ├── Home.jsx            # Pagina inicial
+│   │   ├── Home.jsx                        # Página inicial
 │   │   ├── Home.css
-│   │   ├── RecipeDetailPage.jsx # Detalhes da receita
+│   │   ├── RecipeDetailPage.jsx            # Detalhes da receita
 │   │   ├── RecipeDetailPage.css
-│   │   ├── FavoritesPage.jsx   # Pagina de favoritos
+│   │   ├── FavoritesPage.jsx               # Página de favoritos
 │   │   ├── FavoritesPage.css
-│   │   ├── ShoppingPage.jsx    # Lista de compras
+│   │   ├── ShoppingPage.jsx                # Lista de compras
 │   │   └── ShoppingPage.css
-│   ├── App.jsx                 # Componente principal com rotas
+│   ├── App.jsx                             # Componente principal com rotas
 │   ├── App.css
-│   ├── main.jsx                # Ponto de entrada
-│   └── index.css               # Estilos globais
-├── docker-compose.yml          # Orquestracao dos containers
-├── Dockerfile                  # Build da imagem do frontend
-├── nginx.conf                  # Configuracao do Nginx
+│   ├── main.jsx                            # Ponto de entrada
+│   └── index.css                           # Estilos globais
+├── docker-compose.yml                      # Orquestração dos containers
+├── Dockerfile                              # Build da imagem do frontend
+├── nginx.conf                              # Configuração do Nginx
 ├── index.html
 ├── package.json
 ├── vite.config.js
 └── README.md
 ```
 
-## Funcoes da API (api.js)
+## Funções da API (api.js)
 
 ### Receitas
-| Funcao | Descricao |
+| Função | Descrição |
 |--------|-----------|
 | `searchRecipes(name)` | Busca receitas por nome |
 | `getCategories()` | Lista categorias |
 | `getRecipesByCategory(category)` | Receitas por categoria |
 | `getRecipeById(id)` | Detalhes da receita |
-| `getRandomRecipe()` | Receita aleatoria |
+| `getRandomRecipe()` | Receita aleatória |
 
 ### Usuarios
-| Funcao | Descricao |
+| Função | Descrição |
 |--------|-----------|
-| `createUser(userData)` | Cria usuario |
-| `getUserById(id)` | Busca usuario |
+| `createUser(userData)` | Cria usuário |
+| `getUserById(id)` | Busca usuário |
 
 ### Favoritos
-| Funcao | Descricao |
+| Função | Descrição |
 |--------|-----------|
 | `getFavorites(userId)` | Lista favoritos |
 | `addFavorite(data)` | Adiciona favorito |
@@ -213,7 +219,7 @@ receita-facil-front/
 | `removeFavoriteByRecipe(recipeId, userId)` | Remove por receita |
 
 ### Lista de Compras
-| Funcao | Descricao |
+| Função | Descrição |
 |--------|-----------|
 | `getShoppingList(userId)` | Lista itens |
 | `addShoppingItem(data)` | Adiciona item |
@@ -222,28 +228,24 @@ receita-facil-front/
 | `addRecipeToShoppingList(recipeId, userId)` | Adiciona receita |
 | `clearShoppingList(userId)` | Limpa lista |
 
-## Fluxo de Usuario
+## Fluxo de Usuário
 
-1. **Primeiro acesso**: Usuario e criado automaticamente ao adicionar primeiro favorito ou item na lista
-2. **ID do usuario**: Armazenado no localStorage do navegador
-3. **Persistencia**: Dados salvos no banco de dados via API
+1. **Primeiro acesso**: Usuário e criado automaticamente ao adicionar primeiro favorito ou item na lista
+2. **ID do usuário**: Armazenado no localStorage do navegador
+3. **Persistência**: Dados salvos no banco de dados via API
 
-## Scripts Disponiveis
+## Scripts Disponíveis
 
-| Comando | Descricao |
+| Comando | Descrição |
 |---------|-----------|
 | `npm run dev` | Servidor de desenvolvimento |
-| `npm run build` | Build de producao |
+| `npm run build` | Build de produção |
 | `npm run preview` | Visualizar build |
-| `npm run lint` | Verificar codigo com ESLint |
+| `npm run lint` | Verificar código com ESLint |
 
 ## Navegadores Suportados
 
-- Chrome (ultima versao)
-- Firefox (ultima versao)
-- Safari (ultima versao)
-- Edge (ultima versao)
-
-## Licenca
-
-MIT
+- Chrome (ultima versão)
+- Firefox (ultima versão)
+- Safari (ultima versão)
+- Edge (ultima versão)
