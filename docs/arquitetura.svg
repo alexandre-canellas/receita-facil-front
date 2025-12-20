@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700">
+  <defs>
+    <style>
+      .title { font: bold 16px Arial; fill: #333; }
+      .label { font: 12px Arial; fill: #333; }
+      .small { font: 10px Arial; fill: #333; }
+      .box { stroke: #666; stroke-width: 1; rx: 8; }
+      .arrow { stroke: #666; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+      .arrow-label { font: 9px Arial; fill: #666; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="700" fill="#fafafa"/>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" class="title" style="font-size: 20px;">Arquitetura ReceitaFacil</text>
+
+  <!-- Cliente Box -->
+  <rect x="350" y="50" width="200" height="80" fill="#e1f5fe" class="box"/>
+  <text x="450" y="70" text-anchor="middle" class="title">Cliente (Navegador)</text>
+  <rect x="370" y="85" width="70" height="35" fill="#bbdefb" class="box"/>
+  <text x="405" y="107" text-anchor="middle" class="label">Usuario</text>
+  <rect x="460" y="85" width="70" height="35" fill="#bbdefb" class="box"/>
+  <text x="495" y="107" text-anchor="middle" class="label">Browser</text>
+
+  <!-- Arrow from Cliente to Frontend -->
+  <path d="M 450 130 L 450 155" class="arrow"/>
+
+  <!-- Frontend Box -->
+  <rect x="300" y="160" width="300" height="90" fill="#fff3e0" class="box"/>
+  <text x="450" y="180" text-anchor="middle" class="title">Frontend Container</text>
+  <rect x="320" y="195" width="120" height="45" fill="#ffe0b2" class="box"/>
+  <text x="380" y="212" text-anchor="middle" class="label">Nginx</text>
+  <text x="380" y="227" text-anchor="middle" class="small">Porta 3000</text>
+  <rect x="460" y="195" width="120" height="45" fill="#ffe0b2" class="box"/>
+  <text x="520" y="212" text-anchor="middle" class="label">React App</text>
+  <text x="520" y="227" text-anchor="middle" class="small">(Vite Build)</text>
+
+  <!-- Arrow from Frontend to Backend -->
+  <path d="M 450 250 L 450 275" class="arrow"/>
+  <text x="530" y="267" class="arrow-label">HTTP Requests</text>
+
+  <!-- Backend Box -->
+  <rect x="150" y="280" width="600" height="220" fill="#e8f5e9" class="box"/>
+  <text x="450" y="300" text-anchor="middle" class="title">Backend Container (FastAPI - Porta 8000)</text>
+
+  <!-- Routes -->
+  <rect x="170" y="320" width="170" height="90" fill="#a5d6a7" class="box"/>
+  <text x="255" y="340" text-anchor="middle" class="label" style="font-weight: bold;">Routes</text>
+  <rect x="180" y="350" width="70" height="25" fill="#81c784" class="box"/>
+  <text x="215" y="367" text-anchor="middle" class="small">recipes.py</text>
+  <rect x="260" y="350" width="70" height="25" fill="#81c784" class="box"/>
+  <text x="295" y="367" text-anchor="middle" class="small">usuarios.py</text>
+  <rect x="180" y="380" width="70" height="25" fill="#81c784" class="box"/>
+  <text x="215" y="397" text-anchor="middle" class="small">favoritos.py</text>
+  <rect x="260" y="380" width="70" height="25" fill="#81c784" class="box"/>
+  <text x="295" y="397" text-anchor="middle" class="small">lista_compras.py</text>
+
+  <!-- Models -->
+  <rect x="365" y="320" width="170" height="90" fill="#a5d6a7" class="box"/>
+  <text x="450" y="340" text-anchor="middle" class="label" style="font-weight: bold;">Models (SQLAlchemy)</text>
+  <rect x="375" y="355" width="65" height="22" fill="#81c784" class="box"/>
+  <text x="407" y="370" text-anchor="middle" class="small">Usuario</text>
+  <rect x="445" y="355" width="80" height="22" fill="#81c784" class="box"/>
+  <text x="485" y="370" text-anchor="middle" class="small">Favorito</text>
+  <rect x="400" y="382" width="80" height="22" fill="#81c784" class="box"/>
+  <text x="440" y="397" text-anchor="middle" class="small">ItemCompra</text>
+
+  <!-- Services -->
+  <rect x="560" y="320" width="170" height="90" fill="#a5d6a7" class="box"/>
+  <text x="645" y="340" text-anchor="middle" class="label" style="font-weight: bold;">Services</text>
+  <rect x="580" y="360" width="130" height="35" fill="#81c784" class="box"/>
+  <text x="645" y="382" text-anchor="middle" class="small">themealdb.py</text>
+
+  <!-- Schemas -->
+  <rect x="280" y="430" width="340" height="55" fill="#c8e6c9" class="box"/>
+  <text x="450" y="450" text-anchor="middle" class="label" style="font-weight: bold;">Schemas (Pydantic Validation)</text>
+  <text x="450" y="470" text-anchor="middle" class="small">usuario.py | favorito.py | item_compra.py</text>
+
+  <!-- Arrow from Backend to Database -->
+  <path d="M 350 500 L 250 530" class="arrow"/>
+
+  <!-- Arrow from Backend to TheMealDB -->
+  <path d="M 550 500 L 650 530" class="arrow"/>
+  <text x="620" y="520" class="arrow-label">HTTPX</text>
+
+  <!-- Database Box -->
+  <rect x="100" y="540" width="200" height="80" fill="#fce4ec" class="box"/>
+  <text x="200" y="560" text-anchor="middle" class="title">Banco de Dados</text>
+  <ellipse cx="200" cy="595" rx="70" ry="20" fill="#f8bbd9" stroke="#666"/>
+  <text x="200" y="600" text-anchor="middle" class="small">SQLite</text>
+  <text x="200" y="640" text-anchor="middle" class="small" style="fill: #666;">instance/database.db</text>
+
+  <!-- External API Box -->
+  <rect x="600" y="540" width="200" height="80" fill="#f3e5f5" class="box"/>
+  <text x="700" y="560" text-anchor="middle" class="title">API Externa</text>
+  <ellipse cx="700" cy="595" rx="80" ry="20" fill="#e1bee7" stroke="#666"/>
+  <text x="700" y="600" text-anchor="middle" class="small">TheMealDB API</text>
+  <text x="700" y="640" text-anchor="middle" class="small" style="fill: #666;">www.themealdb.com</text>
+
+  <!-- Legend -->
+  <rect x="20" y="650" width="860" height="40" fill="#f5f5f5" class="box" style="stroke: #ddd;"/>
+  <text x="40" y="675" class="small" style="font-weight: bold;">Legenda:</text>
+  <rect x="100" y="662" width="15" height="15" fill="#e1f5fe"/>
+  <text x="120" y="674" class="small">Cliente</text>
+  <rect x="170" y="662" width="15" height="15" fill="#fff3e0"/>
+  <text x="190" y="674" class="small">Frontend</text>
+  <rect x="250" y="662" width="15" height="15" fill="#e8f5e9"/>
+  <text x="270" y="674" class="small">Backend</text>
+  <rect x="330" y="662" width="15" height="15" fill="#fce4ec"/>
+  <text x="350" y="674" class="small">Database</text>
+  <rect x="420" y="662" width="15" height="15" fill="#f3e5f5"/>
+  <text x="440" y="674" class="small">API Externa</text>
+</svg>

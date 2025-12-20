@@ -249,3 +249,108 @@ receita-facil-front/
 - Firefox (ultima versão)
 - Safari (ultima versão)
 - Edge (ultima versão)
+
+## Arquitetura da Aplicação
+
+O diagrama abaixo ilustra a arquitetura completa da aplicação ReceitaFacil:
+
+![Arquitetura ReceitaFacil](docs/arquitetura.png)
+
+```mermaid
+flowchart TB
+    subgraph Cliente["Cliente (Navegador)"]
+        User["Usuário"]
+        Browser["Navegador Web"]
+    end
+
+    subgraph Frontend["Frontend Container"]
+        Nginx["Nginx\n(Servidor Web)\nPorta 3000"]
+        React["React App\n(Vite Build)"]
+    end
+
+    subgraph Backend["Backend Container"]
+        FastAPI["FastAPI\nPorta 8000"]
+        subgraph Routes["Routes"]
+            R1["recipes.py"]
+            R2["usuarios.py"]
+            R3["favoritos.py"]
+            R4["lista_compras.py"]
+        end
+        subgraph Models["Models"]
+            M1["Usuario"]
+            M2["Favorito"]
+            M3["ItemCompra"]
+        end
+        subgraph Services["Services"]
+            S1["themealdb.py"]
+        end
+    end
+
+    subgraph Database["Banco de Dados"]
+        SQLite["SQLite\n(instance/database.db)"]
+    end
+
+    subgraph External["API Externa"]
+        TheMealDB["TheMealDB API\nwww.themealdb.com"]
+    end
+
+    User --> Browser
+    Browser --> Nginx
+    Nginx --> React
+    React -->|"HTTP Requests\n(Fetch API)"| FastAPI
+    FastAPI --> Routes
+    Routes --> Models
+    Routes --> Services
+    Models --> SQLite
+    Services -->|"HTTPX Client"| TheMealDB
+
+    style Cliente fill:#e1f5fe
+    style Frontend fill:#fff3e0
+    style Backend fill:#e8f5e9
+    style Database fill:#fce4ec
+    style External fill:#f3e5f5
+```
+
+### Descrição dos Componentes
+
+| Componente | Tecnologia | Responsabilidade |
+|------------|------------|------------------|
+| **Nginx** | Nginx Alpine | Servidor web para arquivos estáticos do React |
+| **React App** | React 19 + Vite | Interface do usuário (SPA) |
+| **FastAPI** | Python + FastAPI | API REST, lógica de negócio |
+| **SQLite** | SQLite3 | Persistência de dados locais (usuários, favoritos, lista de compras) |
+| **TheMealDB** | API Externa | Fonte de dados de receitas |
+
+### Fluxo de Dados
+
+1. **Usuário** acessa a aplicação pelo navegador
+2. **Nginx** serve os arquivos estáticos do React (HTML, CSS, JS)
+3. **React App** renderiza a interface e faz requisições HTTP para a API
+4. **FastAPI** processa as requisições:
+   - Para receitas: consulta a API TheMealDB
+   - Para favoritos/lista de compras: consulta o banco SQLite
+5. **Respostas** retornam pelo mesmo caminho até o navegador
+
+### Comunicação entre Containers (Docker)
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      Docker Network                              │
+│                                                                  │
+│  ┌──────────────────┐           ┌──────────────────────────┐   │
+│  │   Frontend       │           │      Backend             │   │
+│  │   (Nginx)        │ ───────── │      (FastAPI)           │   │
+│  │   :3000          │   HTTP    │      :8000               │   │
+│  └──────────────────┘           └──────────────────────────┘   │
+│          │                                   │                  │
+│          │                                   │                  │
+│          ▼                                   ▼                  │
+│     Host :3000                          Host :8000              │
+│                                              │                  │
+│                                              ▼                  │
+│                                    ┌─────────────────┐         │
+│                                    │  SQLite Volume  │         │
+│                                    │  (Persistente)  │         │
+│                                    └─────────────────┘         │
+└─────────────────────────────────────────────────────────────────┘
+```
