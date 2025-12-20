@@ -72,7 +72,7 @@ export async function getRandomRecipe() {
  * Cria um novo usuario
  */
 export async function createUser(userData) {
-  return fetchApi('/users', {
+  return fetchApi('/users/', {
     method: 'POST',
     body: JSON.stringify(userData),
   });
@@ -99,7 +99,7 @@ export async function getFavorites(userId) {
  * Adiciona receita aos favoritos
  */
 export async function addFavorite(favoriteData) {
-  return fetchApi('/favorites', {
+  return fetchApi('/favorites/', {
     method: 'POST',
     body: JSON.stringify(favoriteData),
   });
@@ -144,7 +144,7 @@ export async function getShoppingList(userId) {
  * Adiciona item a lista de compras
  */
 export async function addShoppingItem(itemData) {
-  return fetchApi('/shopping-list', {
+  return fetchApi('/shopping-list/', {
     method: 'POST',
     body: JSON.stringify(itemData),
   });
